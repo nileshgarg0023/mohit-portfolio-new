@@ -3,19 +3,25 @@ import About from '@/components/about'
 import Experience from '@/components/experience'
 import Skills from '@/components/skills'
 import Projects from '@/components/projects'
+import Testimonials from '@/components/testimonials'
 import Contact from '@/components/contact'
 import Footer from '@/components/footer'
+import ThreeDBackground from '@/components/3d-background'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <Hero />
-      <About />
-      <Experience />
-      <Skills />
-      <Projects />
-      <Contact />
+    <>
+      <ThreeDBackground />
+      <main className="relative">
+        <Hero />
+        <About />
+        <Experience />
+        <Skills />
+        <Projects />
+        <Testimonials />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </>
   )
 }

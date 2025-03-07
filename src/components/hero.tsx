@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from 'react'
 import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -60,6 +61,13 @@ export default function Hero() {
   const springConfig = { damping: 20, stiffness: 100 }
   const springRotateX = useSpring(rotateX, springConfig)
   const springRotateY = useSpring(rotateY, springConfig)
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
     <section 
@@ -190,7 +198,9 @@ export default function Hero() {
                     transition={{ duration: 0.8, delay: 0.8 }}
                     className="flex flex-col sm:flex-row gap-4"
                   >
-                    <Button className="relative overflow-hidden group bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-black font-medium px-6 py-2 border-0">
+                    <Button
+                      onClick={() => scrollToSection('projects')}
+                      className="relative overflow-hidden group bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-black font-medium px-6 py-2 border-0">
                       <span className="relative z-10">View Portfolio</span>
                       <motion.span 
                         className="absolute inset-0 bg-white"
@@ -200,7 +210,10 @@ export default function Hero() {
                         style={{ opacity: 0.2 }}
                       />
                     </Button>
-                    <Button variant="outline" className="relative overflow-hidden group border-cyan-500 text-cyan-500 hover:text-cyan-400 hover:bg-transparent px-6 py-2">
+                    <Button
+                      onClick={() => scrollToSection('contact')}
+                      variant="outline"
+                      className="relative overflow-hidden group border-cyan-500 text-cyan-500 hover:text-cyan-400 hover:bg-transparent px-6 py-2">
                       <span className="relative z-10">Contact Me</span>
                       <motion.span 
                         className="absolute inset-0 border border-cyan-500"

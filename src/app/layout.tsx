@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/contexts/AuthContext";
+import Navigation from '@/components/navigation'
+import { Toaster } from 'sonner'
 
 const inter = Inter({
   subsets: ["latin"],
@@ -8,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cybersecurity Professional Portfolio",
-  description: "Portfolio of a cybersecurity expert with 6 years of experience at Maruti Suzuki and TCS",
+  title: "Mohit Portfolio - Cybersecurity Expert",
+  description: "Portfolio showcasing expertise in automotive cybersecurity and system security",
 };
 
 export default function RootLayout({
@@ -20,7 +23,22 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
+        <AuthProvider>
+          <Navigation />
+          {children}
+        </AuthProvider>
+        <Toaster 
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: 'rgba(0, 0, 0, 0.9)',
+              color: '#fff',
+              border: '1px solid rgba(34, 211, 238, 0.3)',
+              fontFamily: 'monospace',
+            },
+            className: 'cyber-toast',
+          }}
+        />
       </body>
     </html>
   );
